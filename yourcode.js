@@ -3,8 +3,16 @@
 const alreadyViewed = [];
 const columns = getColumnsForDevice('.column');
 
+// listen to resize event
+window.addEventListener('resize', onEventTrigger);
+
 // listen to scroll events
-window.addEventListener('scroll', () => {
+window.addEventListener('scroll', onEventTrigger);
+
+/**
+ * Firer on resize or scroll of browser
+ */
+function onEventTrigger() {
     columns.forEach(column => {
         const windowBottomPosition = window.scrollY + window.innerHeight;
         const positions = getElementPositions(column);
@@ -16,7 +24,7 @@ window.addEventListener('scroll', () => {
             }
         });
     });
-});
+}
 
 /**
  * Bring back all column elements for a specific device
